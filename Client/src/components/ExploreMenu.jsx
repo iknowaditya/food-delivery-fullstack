@@ -16,11 +16,10 @@ const ExploreMenu = ({ category, setCategory }) => {
           {menu_list.map((item, index) => (
             <div
               key={index}
-              className={`relative cursor-pointer overflow-hidden rounded-full w-24 h-24 md:w-32 md:h-32 lg:w-40 lg:h-40 flex items-center justify-center transition-transform duration-300 transform hover:scale-105 ${
-                category === item.menu_name
+              className={`relative cursor-pointer overflow-hidden rounded-full w-24 h-24 md:w-32 md:h-32 lg:w-40 lg:h-40 flex items-center justify-center transition-transform duration-300 transform hover:scale-105 ${category === item.menu_name
                   ? "border-[6px] border-green-600"
                   : ""
-              }`}
+                }`}
               onClick={() =>
                 setCategory((prev) =>
                   prev === item.menu_name ? "all" : item.menu_name
@@ -33,11 +32,10 @@ const ExploreMenu = ({ category, setCategory }) => {
                 className={`w-full h-full rounded-full object-cover object-center transition-transform duration-300 transform hover:scale-105`}
               />
               <div
-                className={`absolute inset-0 flex items-center justify-center text-white text-lg font-bold bg-black bg-opacity-50 ${
-                  category === item.menu_name
+                className={`absolute inset-0 flex items-center justify-center text-white text-lg font-bold bg-black bg-opacity-50 ${category === item.menu_name
                     ? "opacity-100"
                     : "opacity-0 hover:opacity-100"
-                } transition-opacity duration-300`}
+                  } transition-opacity duration-300`}
               >
                 {item.menu_name}
               </div>

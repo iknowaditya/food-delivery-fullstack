@@ -9,12 +9,12 @@ const Hero = () => {
     <div className="relative flex items-center justify-center bg-neutral-100 py-16" id="home">
       {/* Hero container */}
       <div className="absolute inset-0">
-        <img 
+        <img
           src={img}
           alt="Hero"
           className="w-full h-full object-cover rounded-b-3xl" // Full width image
         />
-        <div className="absolute inset-0 bg-green-100 opacity-50 rounded-b-3xl"></div> {/* Green overlay */}
+        <div className="absolute inset-0 bg-gray-900 opacity-50 rounded-b-3xl"></div> {/* Green overlay */}
       </div>
 
       <div className="relative mt-44  z-10 mx-4 md:mx-8 lg:mx-16 p-6 md:p-10 lg:p-12 flex flex-col items-center justify-center text-center w-full max-w-5xl">
@@ -36,8 +36,8 @@ const Hero = () => {
             className="mt-8 border-white hover:bg-white hover:text-neutral-900 transition-transform duration-300 hover:scale-105"
             onClick={() => {
               document
-                      .getElementById("explore_menu")
-                      .scrollIntoView({ behavior: "smooth" });
+                .getElementById("explore_menu")
+                .scrollIntoView({ behavior: "smooth" });
             }}
           >
             Order Now

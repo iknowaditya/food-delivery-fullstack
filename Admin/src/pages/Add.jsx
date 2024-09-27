@@ -44,7 +44,7 @@ const Add = () => {
     name: '',
     price: '',
     description: '',
-    category: 'Snacks',
+    category: 'Salad',
   });
 
   const onChangeHandler = (e) => {
@@ -78,7 +78,7 @@ const Add = () => {
           name: '',
           price: '',
           description: '',
-          category: 'Snacks',
+          category: 'Salad',
         });
         setImage(null);
         setFile(null); // Reset file
@@ -107,6 +107,8 @@ const Add = () => {
 
   useEffect(() => {
     window.scrollTo(0, 0);
+    document.title = 'Add New Product | Admin';
+
   }, []);
 
   return (
@@ -174,15 +176,15 @@ const Add = () => {
               value={data.category} // Bind the category value
               onChange={onChangeHandler}
             >
-              <option value="" disabled>Select a category</option>
-              <option value="electronics">Pizza</option>
-              <option value="food">Food</option>
-              <option value="salad">Salad</option>
-              <option value="sandwich">Dosa</option>
-              <option value="samosa">Samosa</option>
-              <option value="rolls">Rolls</option>
-              <option value="beverages">Burger</option>
-              <option value="snacks">Bread</option>
+
+              <option value="Pizza">Pizza</option>
+              <option value="Food">Food</option>
+              <option value="Salad">Salad</option>
+              <option value="Dosa">Dosa</option>
+              <option value="Samosa">Samosa</option>
+              <option value="Biryani">Biryani</option>
+              <option value="Rolls">Rolls</option>
+              <option value="Bread">Bread</option>
             </select>
           </div>
           <div className="flex-1">

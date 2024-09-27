@@ -10,6 +10,7 @@ const Home = () => {
     window.scrollTo(0, 0);
   }, []);
   const [category, setCategory] = useState("all");
+
   return (
     <>
       <div className="xl:max-w-[1280px] w-full mx-auto">

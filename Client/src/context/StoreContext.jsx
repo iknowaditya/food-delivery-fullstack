@@ -2,11 +2,12 @@ import { createContext, useState, useEffect } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import toast from "react-hot-toast";
+import { menu_list2 } from "../assets/FoodImg.js";
 
 export const StoreContext = createContext(null);
 
 const StoreContextProvider = (props) => {
-  const url = "http://localhost:3000";
+  const url = import.meta.env.VITE_API_URL;
   const navigate = useNavigate();
   // Load cart from localStorage if available
   const [cartItems, setCartItems] = useState(() => {
@@ -134,34 +135,34 @@ const StoreContextProvider = (props) => {
   };
 
   // Handle Logout
-const logout = async () => {
-  if (token) {
-    try {
-      // Clear cart from backend
-      await axios.post(`${url}/api/cart/clearCart`, {}, {
-        headers: {
-          Authorization: `Bearer ${token}`, // Send token to clear the cart
-        },
-      });
-      console.log("Cart cleared from backend successfully");
-      toast.success("User logged out successfully");
-    } catch (error) {
-      console.error("Error clearing cart from backend:", error);
+  const logout = async () => {
+    if (token) {
+      try {
+        // Clear cart from backend
+        await axios.post(`${url}/api/cart/clearCart`, {}, {
+          headers: {
+            Authorization: `Bearer ${token}`, // Send token to clear the cart
+          },
+        });
+        console.log("Cart cleared from backend successfully");
+        toast.success("User logged out successfully");
+      } catch (error) {
+        console.error("Error clearing cart from backend:", error);
 
+      }
     }
-  }
 
-  // Clear token and cartItems from localStorage
-  localStorage.removeItem("token");
-  localStorage.removeItem("cartItems");
+    // Clear token and cartItems from localStorage
+    localStorage.removeItem("token");
+    localStorage.removeItem("cartItems");
 
-  // Clear token and cartItems from state
-  setToken("");
-  setCartItems({});
+    // Clear token and cartItems from state
+    setToken("");
+    setCartItems({});
 
-  // Redirect to login page
-  navigate("/");
-};
+    // Redirect to login page
+    navigate("/");
+  };
 
 
   // Initialize data on page load
