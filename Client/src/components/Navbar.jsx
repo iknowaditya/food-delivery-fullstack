@@ -6,6 +6,8 @@ import avtar from "../assets/avtar.svg";
 import order from "../assets/order.svg";
 import logoutimg from "../assets/logout.svg";
 import { useNavigate } from "react-router-dom";
+import logo from "../assets/logo.svg";
+import cartIcon from "../assets/cart.svg"
 
 const Navbar = ({ setShowLogin }) => {
   const { getTotalCartAmount, token, setToken, logout } =
@@ -46,7 +48,7 @@ const Navbar = ({ setShowLogin }) => {
           {/* Logo */}
           <Link aria-current="page" className="flex items-center" to="/">
             <img
-              src="./src/assets/logo.svg"
+              src={logo}
               className="h-8 w-auto"
               alt="Yamm Logo"
             />
@@ -58,11 +60,10 @@ const Navbar = ({ setShowLogin }) => {
               <li>
                 <Link
                   to="#home"
-                  className={`${
-                    menu === "home"
-                      ? "pb-2 border-b-2 border-green-600 text-green-600 transition-all delay-100 ease-in  duration-200 "
-                      : "pb-2 border-b-2 border-transparent"
-                  } inline-block px-2 py-1 text-sm font-medium text-gray-900 transition-all duration-200`}
+                  className={`${menu === "home"
+                    ? "pb-2 border-b-2 border-green-600 text-green-600 transition-all delay-100 ease-in  duration-200 "
+                    : "pb-2 border-b-2 border-transparent"
+                    } inline-block px-2 py-1 text-sm font-medium text-gray-900 transition-all duration-200`}
                   onClick={() => {
                     handleClick("home");
                     document
@@ -76,11 +77,10 @@ const Navbar = ({ setShowLogin }) => {
               <li>
                 <Link
                   to="#explore_menu"
-                  className={`${
-                    menu === "menu"
-                      ? "pb-2 border-b-2 border-green-600 text-green-600 transition-all delay-100 ease-in  duration-200 "
-                      : "pb-2 border-b-2 border-transparent"
-                  } inline-block px-2 py-1 text-sm font-medium text-gray-900 transition-all duration-200`}
+                  className={`${menu === "menu"
+                    ? "pb-2 border-b-2 border-green-600 text-green-600 transition-all delay-100 ease-in  duration-200 "
+                    : "pb-2 border-b-2 border-transparent"
+                    } inline-block px-2 py-1 text-sm font-medium text-gray-900 transition-all duration-200`}
                   onClick={() => {
                     handleClick("menu");
                     document
@@ -94,11 +94,10 @@ const Navbar = ({ setShowLogin }) => {
               <li>
                 <Link
                   to="#app_download"
-                  className={`${
-                    menu === "mobile-app"
-                      ? "pb-2 border-b-2 border-green-600 text-green-600 transition-all delay-100 ease-in  duration-200 "
-                      : "pb-2 border-b-2 border-transparent"
-                  } inline-block px-2 py-1 text-sm font-medium text-gray-900 transition-all duration-200`}
+                  className={`${menu === "mobile-app"
+                    ? "pb-2 border-b-2 border-green-600 text-green-600 transition-all delay-100 ease-in  duration-200 "
+                    : "pb-2 border-b-2 border-transparent"
+                    } inline-block px-2 py-1 text-sm font-medium text-gray-900 transition-all duration-200`}
                   onClick={() => {
                     handleClick("mobile-app");
                     document
@@ -112,11 +111,10 @@ const Navbar = ({ setShowLogin }) => {
               <li>
                 <Link
                   to="#footer"
-                  className={`${
-                    menu === "footer"
-                      ? "pb-2 border-b-2 border-green-600 text-green-600 transition-all delay-100 ease-in  duration-200 "
-                      : "pb-2 border-b-2 border-transparent"
-                  } inline-block px-2 py-1 text-sm font-medium text-gray-900 transition-all duration-200`}
+                  className={`${menu === "footer"
+                    ? "pb-2 border-b-2 border-green-600 text-green-600 transition-all delay-100 ease-in  duration-200 "
+                    : "pb-2 border-b-2 border-transparent"
+                    } inline-block px-2 py-1 text-sm font-medium text-gray-900 transition-all duration-200`}
                   onClick={() => {
                     handleClick("footer");
                     document
@@ -136,17 +134,16 @@ const Navbar = ({ setShowLogin }) => {
               <Link to={"/cart"}>
                 {" "}
                 <img
-                  src="./src/assets/cart.svg"
+                  src={cartIcon}
                   alt="Cart"
                   className="h-5 w-5 cursor-pointer transition-transform duration-300 hover:scale-110"
                 />
               </Link>
               <span
-                className={`${
-                  getTotalCartAmount() === 0
-                    ? ""
-                    : "absolute bg-red-500 h-2 w-2 rounded-full top-0 right-0 transform translate-x-1/2 -translate-y-1/2"
-                }`}
+                className={`${getTotalCartAmount() === 0
+                  ? ""
+                  : "absolute bg-red-500 h-2 w-2 rounded-full top-0 right-0 transform translate-x-1/2 -translate-y-1/2"
+                  }`}
               ></span>
             </div>
             <div className="bg-gray-900 h-6 w-[2px] rounded-full"></div>
