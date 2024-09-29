@@ -47,23 +47,43 @@ const Add = () => {
     category: 'Salad',
   });
 
+  // Handle text input changes
   const onChangeHandler = (e) => {
     const { name, value } = e.target;
     setData({ ...data, [name]: value });
   };
 
+  // Handle file input change
+  const handleImageChange = (e) => {
+    const selectedFile = e.target.files[0];
+    if (selectedFile) {
+      setImage(URL.createObjectURL(selectedFile)); // Preview image
+      setFile(selectedFile); // Save the actual file
+    }
+  };
+
+  // Remove image handler
+  const handleImageRemove = () => {
+    setImage(null);
+    setFile(null); // Clear the image file
+  };
+
+  // Handle form submission
   const onSubmitHandler = async (e) => {
     e.preventDefault();
+
+    // Validate file before form submission
+    if (!file) {
+      toast.error('Please select an image file!');
+      return;
+    }
 
     const formData = new FormData();
     formData.append('name', data.name);
     formData.append('price', Number(data.price));
     formData.append('description', data.description);
     formData.append('category', data.category);
-
-    if (file) {
-      formData.append('image', file); // Send the actual file
-    }
+    formData.append('image', file); // Attach file to FormData
 
     try {
       const response = await axios.post('/api/food/add', formData, {
@@ -92,23 +112,9 @@ const Add = () => {
     }
   };
 
-  const handleImageChange = (e) => {
-    const selectedFile = e.target.files[0];
-    if (selectedFile) {
-      setImage(URL.createObjectURL(selectedFile)); // Preview image
-      setFile(selectedFile); // Save the actual file
-    }
-  };
-
-  const handleImageRemove = () => {
-    setImage(null);
-    setFile(null); // Clear the image file
-  };
-
   useEffect(() => {
     window.scrollTo(0, 0);
     document.title = 'Add New Product | Admin';
-
   }, []);
 
   return (
@@ -133,7 +139,6 @@ const Add = () => {
               type="file"
               id="image"
               hidden
-              required
               accept="image/*"
               onChange={handleImageChange}
             />
@@ -176,7 +181,6 @@ const Add = () => {
               value={data.category} // Bind the category value
               onChange={onChangeHandler}
             >
-
               <option value="Pizza">Pizza</option>
               <option value="Food">Food</option>
               <option value="Salad">Salad</option>

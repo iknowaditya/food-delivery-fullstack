@@ -2,13 +2,13 @@ import React, { useContext } from "react";
 import { StoreContext } from "../context/StoreContext";
 import { useNavigate } from "react-router-dom";
 import toast from "react-hot-toast"; // Import toast from react-hot-toast
-import star from "../assets/FoodImg/star.png";
+import star from "../assets/starIcon.svg";
 import add from "../assets/add.svg";
 import minus from "../assets/minus.svg";
 import plus from "../assets/plus.svg";
 
 const FoodItem = React.memo(({ id, name, price, description, image }) => {
-  const { cartItems={}, addToCart, removeFromCart, url, token  } = useContext(StoreContext);
+  const { cartItems = {}, addToCart, removeFromCart, url, token } = useContext(StoreContext);
   const navigate = useNavigate();
 
   // Function to handle the Order Now button click
@@ -18,28 +18,28 @@ const FoodItem = React.memo(({ id, name, price, description, image }) => {
       : toast.error("Please select the quantity.");
   };
 
-// Function to check if user is logged in (i.e., token exists)
-const handleAddToCart = (itemId) => {
-  if (!token) {
-    toast.error("Please log in to add items to the cart!");
-  } else {
-    // Check if the cart item count is less than 10 before adding
-    if (cartItems[itemId] && cartItems[itemId] >= 10) {
-      toast.error("You cannot add more than 10 items.");
+  // Function to check if user is logged in (i.e., token exists)
+  const handleAddToCart = (itemId) => {
+    if (!token) {
+      toast.error("Please log in to add items to the cart!");
     } else {
-      addToCart(itemId);
+      // Check if the cart item count is less than 10 before adding
+      if (cartItems[itemId] && cartItems[itemId] >= 10) {
+        toast.error("You cannot add more than 10 items.");
+      } else {
+        addToCart(itemId);
+      }
     }
-  }
-};
+  };
 
 
-const handleRemoveFromCart = (itemId) => {
-  if (!token) {
-    toast.error("Please log in to modify cart items!");
-  } else {
-    removeFromCart(itemId);
-  }
-};
+  const handleRemoveFromCart = (itemId) => {
+    if (!token) {
+      toast.error("Please log in to modify cart items!");
+    } else {
+      removeFromCart(itemId);
+    }
+  };
 
   return (
     <div className="max-w-sm bg-white rounded-lg shadow-lg overflow-hidden transform transition-transform duration-500 hover:scale-[1.02] hover:shadow-lg">
@@ -54,7 +54,7 @@ const handleRemoveFromCart = (itemId) => {
           <img
             src={star}
             alt="Rating"
-            className="w-28 h-10 object-cover object-center"
+            className="w-10 h-10 object-cover object-center"
           />
           {/* Add/Minus/Plus Button */}
           {(!cartItems || !cartItems[id]) ? (
