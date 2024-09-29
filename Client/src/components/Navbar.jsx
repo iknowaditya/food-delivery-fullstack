@@ -42,7 +42,7 @@ const Navbar = ({ setShowLogin }) => {
   };
 
   return (
-    <header className="fixed inset-x-0 top-0 z-20 mx-auto w-full max-w-screen-md border border-gray-100 bg-[#e1e1e1] px-4 py-4 shadow-lg backdrop-blur-lg md:top-6 md:rounded-full lg:max-w-screen-lg">
+    <header className="fixed inset-x-0 top-0 z-20 mx-auto w-full max-w-screen-md border border-gray-100 bg-[#FCF9F9] px-4 py-4 shadow-lg backdrop-blur-lg md:top-6 md:rounded-full lg:max-w-screen-lg">
       <div className="px-8">
         <div className="flex items-center justify-between">
           {/* Logo */}

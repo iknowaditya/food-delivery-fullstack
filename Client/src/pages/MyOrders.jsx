@@ -42,7 +42,7 @@ const MyOrders = () => {
 
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 ">
         {data.length === 0 ? (
-            <div className="flex items-center justify-center col-span-full h-[300px] bg-green-50 border border-gray-200 rounded-lg shadow-lg overflow-hidden hover:shadow-2xl transition-shadow duration-300">
+          <div className="flex items-center justify-center col-span-full h-[300px] bg-green-50 border border-gray-200 rounded-lg shadow-lg overflow-hidden hover:shadow-2xl transition-shadow duration-300">
             <div className="p-6 text-center">
               <p className="text-gray-500">
                 You have no orders yet.
@@ -59,15 +59,14 @@ const MyOrders = () => {
                 {/* Order Info Header */}
                 <div className="flex justify-between items-center mb-4">
                   <h3 className="text-lg font-bold text-gray-900 flex flex-col">
-                    Order ID:{" "}
-                    <span className="text-gray-700 text-sm font-medium">
+                    Order ID{" "}
+                    <span className="text-gray-500 text-sm font-medium">
                       {order._id}
                     </span>
                   </h3>
                   <p
-                    className={`text-sm font-semibold ${
-                      order.payment ? "text-green-500" : "text-red-500"
-                    }`}
+                    className={`text-sm font-semibold ${order.payment ? "text-green-500" : "text-red-500"
+                      }`}
                   >
                     {order.payment ? (
                       <>
@@ -82,10 +81,11 @@ const MyOrders = () => {
                 </div>
 
                 {/* Scrollable Items */}
-                <div className="max-h-48 overflow-y-auto custom-scrollbar mb-4">
-                  <h4 className="font-semibold text-gray-800 mb-2">
-                    Items Ordered:
-                  </h4>
+                <h4 className="font-semibold text-gray-800 mb-2">
+                  Items Ordered
+                </h4>
+                <div className="h-48 bg-gray-100 overflow-y-auto custom-scrollbar mb-4 p-2 rounded-lg ">
+
                   <ul className="space-y-3">
                     {order.items.map((item, idx) => (
                       <li key={idx} className="flex items-center space-x-4">
@@ -99,10 +99,10 @@ const MyOrders = () => {
                             {item.name}
                           </p>
                           <p className="text-sm text-gray-600">
-                            Quantity: {item.quantity}
+                            Quantity {item.quantity}
                           </p>
                           <p className="text-sm text-gray-600 ">
-                            Price: ${item.price}
+                            Price ${item.price}
                           </p>
                         </div>
                       </li>
@@ -114,7 +114,7 @@ const MyOrders = () => {
                 <div className="border-t border-gray-200 pt-4">
                   <div className="flex justify-between items-center mb-2">
                     <p className="text-sm font-medium text-gray-600">
-                      Total Amount:
+                      Total Amount
                     </p>
                     <p className="text-xl font-bold text-gray-900">
                       <span className="text-green-600 delius text-xl">$</span>
@@ -124,15 +124,14 @@ const MyOrders = () => {
                   <div className="flex justify-between items-center mb-2">
                     <p className="text-sm font-medium text-gray-600">Status:</p>
                     <p
-                      className={`flex items-center justify-center text-sm font-bold ${
-                        order.status === "Delivered"
-                          ? "text-green-500"
-                          : order.status === "Out for Delivery"
+                      className={`flex items-center justify-center text-sm font-bold ${order.status === "Delivered"
+                        ? "text-green-500"
+                        : order.status === "Out for Delivery"
                           ? "text-blue-500"
                           : order.status === "Cancelled"
-                          ? "text-red-600"
-                          : "text-yellow-500" // Default for any other status
-                      }`}
+                            ? "text-red-600"
+                            : "text-yellow-500" // Default for any other status
+                        }`}
                     >
                       {order.status}
                     </p>

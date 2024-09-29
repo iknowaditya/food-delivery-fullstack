@@ -1,6 +1,7 @@
 import React, { useContext, useEffect } from "react";
 import { StoreContext } from "../context/StoreContext";
 import { useNavigate } from "react-router-dom";
+import deleteIcon from "../assets/delete.svg";
 
 const Cart = () => {
   const { cartItems, menu_list2, removeFromCart, getTotalCartAmount, url } =
@@ -61,7 +62,7 @@ const Cart = () => {
                     className="grid grid-cols-3 md:grid-cols-6 gap-2 md:gap-4 items-center text-center mb-4 p-4 border border-gray-200 rounded-lg hover:shadow-lg transition-shadow duration-300"
                   >
                     <img
-                      src={url+"/images/"+item.image}
+                      src={url + "/images/" + item.image}
                       alt={item.name}
                       className="w-16 h-16 object-cover rounded-lg mx-auto"
                     />
@@ -77,7 +78,11 @@ const Cart = () => {
                       onClick={() => removeFromCart(item._id)}
                       className="text-red-600 hover:text-red-800 transition-colors duration-200 font-bold text-xl"
                     >
-                      X
+                      <img
+                        src={deleteIcon}
+                        alt="Delete"
+                        className="w-6 h-6 object-cover rounded-lg mx-auto"
+                      />
                     </button>
                   </div>
                 );

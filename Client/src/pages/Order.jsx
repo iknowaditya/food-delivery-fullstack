@@ -1,6 +1,7 @@
 import React, { useState, useContext, useEffect } from "react";
 import { StoreContext } from "../context/StoreContext";
 import axios from "axios";
+import { Toaster } from "react-hot-toast";
 
 const Order = () => {
   const { getTotalCartAmount, token, menu_list2, cartItems, url } = useContext(StoreContext);
@@ -25,7 +26,7 @@ const Order = () => {
   const placeOrder = async (e) => {
     e.preventDefault();
     let orderItems = [];
-    
+
     // Ensure that menu_list2 is available before mapping
     menu_list2.forEach((item) => {
       if (cartItems[item._id] > 0) {
@@ -37,21 +38,20 @@ const Order = () => {
 
     // You may want to send orderItems to your backend here
     let orderData = {
-      address: data, 
+      address: data,
       items: orderItems,
-      amount: getTotalCartAmount()+2,
+      amount: getTotalCartAmount() + 2,
     }
-    let response = await axios.post(url + "/api/order/placeOrder", orderData,{
+    let response = await axios.post(url + "/api/order/placeOrder", orderData, {
       headers: {
         Authorization: `Bearer ${token}`,
       }
     })
 
     if (response.data.success) {
-      const {session_url} = response.data;
-      window.location.replace(session_url);  
-      console.log("Order placed successfully");
-      alert("Order placed successfully");
+      const { session_url } = response.data;
+      window.location.replace(session_url);
+      alert("Redirecting to payment gateway");
     } else {
       console.log("Failed to place order");
       alert("Failed to place order");

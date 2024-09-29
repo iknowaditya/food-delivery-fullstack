@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import toast from "react-hot-toast";
-// import { CheckCircleIcon, XCircleIcon } from '@heroicons/react/outline';
+
 
 const Orders = () => {
   const [orders, setOrders] = useState([]);
@@ -63,11 +63,10 @@ const Orders = () => {
               </h2>
 
               <span
-                className={`px-3 py-1 text-sm rounded ${
-                  order.payment
-                    ? "bg-green-100 text-green-600"
-                    : "bg-red-100 text-red-600"
-                }`}
+                className={`px-3 py-1 text-sm rounded ${order.payment
+                  ? "bg-green-100 text-green-600"
+                  : "bg-red-100 text-red-600"
+                  }`}
               >
                 {order.payment ? "Paid" : "Unpaid"}
               </span>
@@ -100,11 +99,11 @@ const Orders = () => {
             </p>
 
             {/* Scrollable Order Items */}
-            <div className="mt-4">
+            <div className="mt-4 ">
               <h3 className="text-lg font-semibold text-gray-800">
                 Order Items:
               </h3>
-              <ul className="custom-scrollbar overflow-y-auto max-h-32 mt-2 px-2">
+              <ul className="custom-scrollbar overflow-y-auto h-32 mt-2 px-2">
                 {order.items.map((item, index) => (
                   <li
                     key={index}

@@ -17,7 +17,11 @@ const PORT = process.env.PORT || 3000;
 connectDB();
 
 // Allowed origins
-const allowedOrigins = ['https://food-delivery-fullstack-frontend.vercel.app', 'https://food-delivery-fullstack-admin.vercel.app'];  // Add more origins as needed
+// const allowedOrigins = ['https://food-delivery-fullstack-frontend.vercel.app', 'https://food-delivery-fullstack-admin.vercel.app'];  // Add more origins as needed
+
+// const allowedOrigins = ['http://localhost:5173', 'http://localhost:5174'];
+
+const allowedOrigins = process.env.ALLOWED_ORIGINS ? process.env.ALLOWED_ORIGINS.split(',') : [];
 
 // CORS middleware to allow multiple origins
 app.use(cors({

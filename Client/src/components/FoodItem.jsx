@@ -46,10 +46,10 @@ const FoodItem = React.memo(({ id, name, price, description, image }) => {
       <img
         src={url + "/images/" + image}
         alt={name}
-        className="w-full h-48 object-cover rounded-b-lg object-center "
+        className="w-full h-48 bg-gray-600 object-cover rounded-b-lg object-center "
       />
       <div className="p-6">
-        <div className="flex justify-between items-center mb-4">
+        <div className="flex justify-between items-center   h-16 p-1 ">
           <h3 className="text-xl font-bold text-gray-800">{name}</h3>
           <img
             src={star}
@@ -87,8 +87,9 @@ const FoodItem = React.memo(({ id, name, price, description, image }) => {
             </div>
           )}
         </div>
+        <hr />
 
-        <p className="text-gray-700 text-sm mb-3 line-clamp-2 leading-relaxed ">
+        <p className="text-gray-700 text-sm mb-[10px] mt-2 line-clamp-2 leading-relaxed overflow-hidden h-12 p-1 ">
           {description}
         </p>
 

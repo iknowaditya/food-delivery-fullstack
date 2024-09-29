@@ -20,7 +20,7 @@ const Hero = () => {
       <div className="relative mt-44  z-10 mx-4 md:mx-8 lg:mx-16 p-6 md:p-10 lg:p-12 flex flex-col items-center justify-center text-center w-full max-w-5xl">
         {/* Hero heading */}
         <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold text-white mb-4 delius animate-fade-in animate-delay-500 animate-duration-1000">
-          Crave. <span className="text-green-600">Click.</span> Enjoy.
+          Crave. <span className="text-[#86EE60]">Click.</span> Enjoy.
         </h1>
 
         {/* Hero description */}
