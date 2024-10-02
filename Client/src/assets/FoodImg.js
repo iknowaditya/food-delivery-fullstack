@@ -1,10 +1,10 @@
-import food1 from "./FoodImg/food-1.jpg";
-import food2 from "./FoodImg/food-2.jpg";
-import food3 from "./FoodImg/food-3.jpg";
-import food4 from "./FoodImg/food-4.jpg";
-import food5 from "./FoodImg/food-5.jpg";
-import food6 from "./FoodImg/food-6.jpg";
-import food7 from "./FoodImg/food-7.jpg";
+import food1 from "./FoodImg/food-20.jpg";
+import food2 from "./FoodImg/food-8.jpg";
+import food3 from "./FoodImg/food-22.jpg";
+import food4 from "./FoodImg/food-16.jpg";
+import food5 from "./FoodImg/food-11.jpg";
+import food6 from "./FoodImg/food-23.jpg";
+import food7 from "./FoodImg/food-25.jpg";
 import food8 from "./FoodImg/food-8.jpg";
 import food9 from "./FoodImg/food-9.jpg";
 import food10 from "./FoodImg/food-10.jpg";
@@ -20,12 +20,12 @@ import food19 from "./FoodImg/food-19.jpg";
 
 export const menu_list = [
   { menu_name: "Pizza", menu_img: food1 },
-  { menu_name: "Burger", menu_img: food2 },
+  { menu_name: "Biryani", menu_img: food2 },
   { menu_name: "Noodles", menu_img: food3 },
-  { menu_name: "Pasta", menu_img: food4 },
-  { menu_name: "Fries", menu_img: food5 },
-  { menu_name: "Salad", menu_img: food6 },
-  { menu_name: "Soup", menu_img: food7 },
+  { menu_name: "Dosa", menu_img: food4 },
+  { menu_name: "Yamm Yamm", menu_img: food5 },
+  { menu_name: "Burger", menu_img: food6 },
+  { menu_name: "Rolls", menu_img: food7 },
 ];
 
 export const menu_list2 = [

@@ -17,9 +17,9 @@ function App() {
   return (
     <>
       {showLogin ? <LoginPopUp setShowLogin={setShowLogin} /> : <></>}
-      <Toaster 
-         position="bottom-right"
-         reverseOrder={true}
+      <Toaster
+        position="bottom-right"
+        reverseOrder={true}
       />
       <Navbar setShowLogin={setShowLogin} />
       <Routes>

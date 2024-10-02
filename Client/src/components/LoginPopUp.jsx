@@ -33,20 +33,24 @@ const LoginPopUp = ({ setShowLogin }) => {
 
       // Send request to the server
       const response = await axios.post(newUrl, data);
-      
+
       console.log(response.data);  // Log the full response to verify the structure
 
       if ((response.status === 200 || response.status === 201) && response.data.token) {
         // Ensure token exists in the response
         setToken(response.data.token);
         localStorage.setItem("token", response.data.token);
+        localStorage.setItem("userName", response.data.user.name);
         setShowLogin(false); // Close login popup
-        toast.success(`${currState} successful! Welcome!`);
+        toast.success(`${currState} successful! Welcome, ${response.data.user.name}!`, {
+          duration: 3000,
+          zIndex: 9999,
+        });
       } else {
         // Handle unsuccessful login/register
         toast.error(response.data.message || "Failed to authenticate.");
       }
-      
+
     } catch (error) {
       // Catch and display any errors from the request
       console.error("Login error:", error);
@@ -110,15 +114,15 @@ const LoginPopUp = ({ setShowLogin }) => {
 
             {/* Remember me section */}
             <div className="flex items-center justify-start space-x-2">
-  <input
-    type="checkbox"
-    className="cursor-pointer h-4 w-4 mb-4 text-green-600  transition duration-300"
-    required
-  />
-  <label className="text-sm text-gray-600">
-    By continuing, you agree to the terms and conditions
-  </label>
-</div>
+              <input
+                type="checkbox"
+                className="cursor-pointer h-4 w-4 mb-4 text-green-600  transition duration-300"
+                required
+              />
+              <label className="text-sm text-gray-600">
+                By continuing, you agree to the terms and conditions
+              </label>
+            </div>
 
 
             {/* Submit button */}
