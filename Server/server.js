@@ -6,6 +6,7 @@ const foodRouter = require('./routes/foodRoute.js');
 const userRouter = require('./routes/userRoute.js');
 const cartRouter = require('./routes/cartRoute.js');
 const orderRouter = require('./routes/orderRoute.js');
+const corsOptions = require('./config/corsOptions.js');
 
 dotenv.config();
 
@@ -16,26 +17,8 @@ const PORT = process.env.PORT || 3000;
 // Connect to DB
 connectDB();
 
-// Allowed origins
-// const allowedOrigins = ['https://food-delivery-fullstack-frontend.vercel.app', 'https://food-delivery-fullstack-admin.vercel.app'];  // Add more origins as needed
-
-// const allowedOrigins = ['http://localhost:5173', 'http://localhost:5174'];
-
-const allowedOrigins = process.env.ALLOWED_ORIGINS ? process.env.ALLOWED_ORIGINS.split(',') : [];
-
-// CORS middleware to allow multiple origins
-app.use(cors({
-  origin: (origin, callback) => {
-    if (!origin || allowedOrigins.includes(origin)) {
-      callback(null, true);
-    } else {
-      callback(new Error('Not allowed by CORS'));
-    }
-  },
-  methods: ['GET', 'POST', 'PUT', 'DELETE'],
-  allowedHeaders: ['Content-Type', 'Authorization'],
-  credentials: true
-}));
+// CORS middleware
+app.use(cors(corsOptions));
 
 // Middleware for parsing JSON and URL-encoded data
 app.use(express.json());

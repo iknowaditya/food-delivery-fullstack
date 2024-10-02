@@ -9,7 +9,7 @@ const stripe = Stripe(process.env.STRIPE_SECRET_KEY);
 // Place user order from frontend
 const placeOrder = async (req, res) => {
     const frontend_url = process.env.FRONTEND_URL;
-    
+
     try {
         // Create a new order
         const newOrder = new orderModel({
@@ -20,7 +20,7 @@ const placeOrder = async (req, res) => {
 
         // Save the order to the database
         await newOrder.save();
-        
+
         // Clear the user's cart
         await userModel.findByIdAndUpdate(req.body.userId, { cartData: {} });
 
@@ -31,7 +31,7 @@ const placeOrder = async (req, res) => {
                 product_data: {
                     name: item.name,
                 },
-                unit_amount: item.price * 100, 
+                unit_amount: item.price * 100,
             },
             quantity: item.quantity,
         }));
@@ -43,7 +43,7 @@ const placeOrder = async (req, res) => {
                 product_data: {
                     name: "Delivery Charge",
                 },
-                unit_amount: req.body.amount + 2,
+                unit_amount: (req.body.amount + 3),
             },
             quantity: 1,
         });
@@ -74,22 +74,22 @@ const verifyOrder = async (req, res) => {
     const { success, OrderId } = req.body;
 
     try {
-        if (success == "true") { 
-            await orderModel.findByIdAndUpdate(OrderId, { payment: "true" });
+        if (success === "true") {
+            await orderModel.findByIdAndUpdate(OrderId, { payment: true });
 
             res.json({
                 success: true,
                 message: "Order placed successfully",
             });
-}else{
-    await orderModel.findByIdAndDelete(OrderId);
+        } else {
+            await orderModel.findByIdAndDelete(OrderId);
 
-    res.json({
-        success: false,
-        message: "Order failed",
-}
-    );
-}
+            res.json({
+                success: false,
+                message: "Order failed",
+            }
+            );
+        }
     } catch (err) {
         console.error(err);
         res.status(500).json({
@@ -103,13 +103,13 @@ const verifyOrder = async (req, res) => {
 
 // users order for frontend.
 const userOrders = async (req, res) => {
-    try{
+    try {
         const orders = await orderModel.find({ userId: req.body.userId });
         res.json({
             success: true,
             data: orders
         })
-    }catch(err){
+    } catch (err) {
         console.log(err);
         res.status(500).json({
             success: false,
@@ -120,37 +120,38 @@ const userOrders = async (req, res) => {
 
 // listing all orders for admin page..
 const listAllOrders = async (req, res) => {
-    try{
+    try {
         const orders = await orderModel.find({});
         res.json({
             success: true,
             data: orders
         })
-    }catch(err){
+    } catch (err) {
         console.log(err);
         res.status(500).json({
             success: false,
             message: "Internal server error",
         });
     }
-    }
+}
 
-    //text API for updating order status..
-    const updateOrderStatus = async (req, res) => {
-        try{
-            const order = await orderModel.findByIdAndUpdate(req.body.orderId, {
-                status: req.body.status});
-            res.json({
-                success: true,
-                message: "Order status updated successfully",
-            })
-        }catch(err){
-            console.log(err);
-            res.status(500).json({
-                success: false,
-                message: "Internal server error",
-            });
-        }
+//text API for updating order status..
+const updateOrderStatus = async (req, res) => {
+    try {
+        const order = await orderModel.findByIdAndUpdate(req.body.orderId, {
+            status: req.body.status
+        });
+        res.json({
+            success: true,
+            message: "Order status updated successfully",
+        })
+    } catch (err) {
+        console.log(err);
+        res.status(500).json({
+            success: false,
+            message: "Internal server error",
+        });
     }
+}
 
 module.exports = { placeOrder, verifyOrder, userOrders, listAllOrders, updateOrderStatus };

@@ -7,16 +7,16 @@ const authMiddleware = async (req, res, next) => {
     if (!token) {
         return res.status(401).json({
             success: false,
-            message: "Not authorized",
+            message: "Not authorized, token missing",
         });
     }
 
     try {
         const decoded = jwt.verify(token, process.env.JWT_SECRET);
-        req.body.userId = decoded.id;
+        req.body.userId = decoded.id;  // Pass the user ID to the request body
         next();
     } catch (err) {
-        console.log(err);
+        console.error("JWT Error:", err);
         return res.status(401).json({
             success: false,
             message: "Invalid or expired token",

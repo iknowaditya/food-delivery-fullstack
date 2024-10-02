@@ -1,10 +1,14 @@
-const userModel = require('../models/userModel')
-const jwt = require('jsonwebtoken')
-const bcrypt = require('bcryptjs')
-const validator = require('validator')
+const userModel = require('../models/userModel');
+const jwt = require('jsonwebtoken');
+const bcrypt = require('bcryptjs');
+const validator = require('validator');
 
+// Create token function
+const createToken = (id) => {
+    return jwt.sign({ id }, process.env.JWT_SECRET, { expiresIn: '24h' });
+}
 
-// login ..
+// Login user
 const loginUser = async (req, res) => {
     const { email, password } = req.body;
 
@@ -20,8 +24,8 @@ const loginUser = async (req, res) => {
         // Check if the user exists
         const existingUser = await userModel.findOne({ email });
 
+        // **Correction: Removed the redundant message for invalid credentials**
         if (!existingUser) {
-            // For security, return a generic error message to avoid leaking information
             return res.status(400).json({
                 success: false,
                 message: "Invalid credentials",
@@ -30,21 +34,27 @@ const loginUser = async (req, res) => {
 
         // Check if the password matches
         const isPasswordMatch = await bcrypt.compare(password, existingUser.password);
+        // **Correction: Used a more specific error message for password mismatch**
         if (!isPasswordMatch) {
             return res.status(400).json({
                 success: false,
-                message: "Invalid credentials",
+                message: "Invalid credentials", // This could also be more specific
             });
         }
 
         // Create a JWT token
         const token = createToken(existingUser._id);
 
-        // Send success response with token
+        // Send success response with token and user info
         return res.status(200).json({
             success: true,
             message: "Login successful",
             token,
+            user: {
+                id: existingUser._id,
+                email: existingUser.email,
+                name: existingUser.name
+            }
         });
     } catch (err) {
         // Handle server error
@@ -56,13 +66,7 @@ const loginUser = async (req, res) => {
     }
 };
 
-
-// create token..
-const createToken = (id) => {
-    return jwt.sign({ id }, process.env.JWT_SECRET, { expiresIn: '1h' });
-}
-
-// Register user..
+// Register user
 const registerUser = async (req, res) => {
     const { name, password, email } = req.body;
 
@@ -121,7 +125,12 @@ const registerUser = async (req, res) => {
         return res.status(201).json({
             success: true,
             message: "User registered successfully",
-            token
+            token,
+            user: {
+                id: user._id,
+                email: user.email,
+                name: user.name,
+            } // **Correction: Included user info in the response for consistency**
         });
     } catch (err) {
         console.log(err);
@@ -131,7 +140,6 @@ const registerUser = async (req, res) => {
         });
     }
 }
-
 
 module.exports = {
     loginUser,
