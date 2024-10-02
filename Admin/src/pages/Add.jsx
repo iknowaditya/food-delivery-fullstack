@@ -182,13 +182,12 @@ const Add = () => {
               onChange={onChangeHandler}
             >
               <option value="Pizza">Pizza</option>
-              <option value="Food">Food</option>
-              <option value="Salad">Salad</option>
               <option value="Dosa">Dosa</option>
-              <option value="Samosa">Samosa</option>
+              <option value="Noodles">Noodles</option>
+              <option value="Burger">Burger</option>
+              <option value="Yamm Yamm">Yamm Yamm</option>
               <option value="Biryani">Biryani</option>
               <option value="Rolls">Rolls</option>
-              <option value="Bread">Bread</option>
             </select>
           </div>
           <div className="flex-1">
