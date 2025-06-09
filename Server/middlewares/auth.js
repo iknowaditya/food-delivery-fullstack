@@ -16,7 +16,11 @@ const authMiddleware = async (req, res, next) => {
         req.body.userId = decoded.id;
         next();
     } catch (err) {
+<<<<<<< HEAD
        console.error("JWT verification error:", err);
+=======
+        console.error("JWT verification error:", err);
+>>>>>>> c2d17e1 (some ui update or login update)
         return res.status(401).json({
             success: false,
             message: "Invalid or expired token",
