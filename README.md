@@ -10,6 +10,15 @@ Yumm Yumm Food App is a full-stack web application designed for food delivery, a
 - **Payment Gateway**: Stripe
 - **Authentication**: JWT (JSON Web Token)
 - **Validation**: Validator
+
+## ScreenShots
+![Screenshot 2025-06-09 132846](https://github.com/user-attachments/assets/4229a37e-515a-4980-b7e2-6d5b884b1c9d)
+
+## Admin Dashboard
+![Screenshot 2025-06-09 101121](https://github.com/user-attachments/assets/279f9b41-7bef-4ac6-b169-d1fcc6d08fa0)
+![Screenshot 2025-06-09 125901](https://github.com/user-attachments/assets/a3e293f2-3a9f-4dd7-bebc-2ca13dac8d09)
+
+
 ## Features
 
 - **User Authentication**: 
@@ -93,7 +102,3 @@ Your contributions, inspiration, and support have been invaluable in bringing th
 
 Contributions are welcome! We appreciate any suggestions, improvements, or feedback to enhance the Yumm Yumm Food App. To contribute:
 
-1. **Fork the repository**: Click the "Fork" button at the top right of the page.
-2. **Create a new branch**: 
-   ```bash
-   git checkout -b feature/YourFeatureName
