@@ -3,7 +3,7 @@ import Hero from "../components/Hero";
 import ExploreMenu from "../components/ExploreMenu";
 import FoodDisplay from "../components/FoodDisplay";
 // import AppDownload from "@/components/AppDownload";
-import Tracking from "@/components/tracking";
+import Tracking from "../components/Tracking";
 import Newsletter from "@/components/NewsLetter";
 // import Testing from "../components/test";
 
@@ -22,6 +22,7 @@ const Home = () => {
         {/* <Testing /> */}
         <FoodDisplay category={category} />
         <Tracking />
+
         <Newsletter />
         {/* <AppDownload /> */}
       </div>

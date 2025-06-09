@@ -1,6 +1,6 @@
 import React, { useEffect, useRef, useState } from "react";
-import { motion, AnimatePresence } from "framer-motion";
-import { Clock, MapPin, CheckCircle, Bike, Utensils } from "lucide-react";
+import { motion } from "framer-motion";
+import { Clock, MapPin, Bike, Utensils } from "lucide-react";
 import L from "leaflet";
 import "leaflet/dist/leaflet.css";
 
