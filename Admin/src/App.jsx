@@ -6,6 +6,7 @@ import Add from "./pages/Add";
 import List from "./pages/List";
 import Orders from "./pages/Orders";
 import Users from "./pages/AllUsers";
+import AnalyticsDashboard from "./pages/AnalyticsDashboard";
 import axios from "axios";
 import { Toaster } from "react-hot-toast";
 
@@ -34,6 +35,7 @@ const App = () => {
               <Route path="/list" element={<List />} />
               <Route path="/orders" element={<Orders />} />
               <Route path="/users" element={<Users />} />
+              <Route path="/analytics" element={<AnalyticsDashboard />} />
             </Routes>
           </div>
         </div>
