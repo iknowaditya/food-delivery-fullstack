@@ -113,17 +113,13 @@ const FoodItem = React.memo(({ id, name, price, description, image }) => {
           {description}
         </p>
 
-        <div className="flex justify-between items-center">
-          <span className="text-3xl leading-relaxed font-bold text-green-600">
-            ${price}
-          </span>
-          <button
-            className="bg-green-600 text-white px-4 py-2 rounded-md hover:bg-green-700 transition-colors duration-300 shadow-md hover:shadow-lg"
-            onClick={handleOrderNow} // Use handleOrderNow for click event
-          >
-            Order Now
-          </button>
-        </div>
+        <button
+          onClick={handleOrderNow}
+          className="w-full flex items-center justify-center gap-2 bg-gradient-to-r from-[#99f2c8] to-[#1f4037] hover:sh text-white py-2.5 rounded-xl text-sm font-semibold shadow-md hover:shadow-2xl transition-all duration-300"
+        >
+          <ShoppingCart className="w-4 h-4" />
+          Order Now
+        </button>
       </div>
     </motion.div>
   );

@@ -108,7 +108,7 @@ const Navbar = ({ setShowLogin }) => {
                 id="app_download"
                 menuKey="mobile-app"
               >
-                App
+                Blog
               </NavItem>
               <NavItem to="#footer" id="footer" menuKey="footer">
                 Contact
@@ -229,7 +229,7 @@ const Navbar = ({ setShowLogin }) => {
                   id="app_download"
                   menuKey="mobile-app"
                 >
-                  Mobile App
+                  Blog
                 </NavItem>
                 <NavItem to="#footer" id="footer" menuKey="footer">
                   Contact Us
