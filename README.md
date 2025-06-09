@@ -79,7 +79,7 @@ DesiBite Food App is a full-stack web application designed for food delivery, al
 - For any issues or inquiries, please contact our support team through the app.
 # Acknowledgements 
 
-- **Inspiration**: A special thanks to the various food delivery applications that inspired the development of Yumm Yumm Food App. Your innovative designs and features helped shape this project.
+- **Inspiration**: A special thanks to the various food delivery applications that inspired the development of DesiBite Food App. Your innovative designs and features helped shape this project.
 
 - **Libraries and Frameworks**:
   - [React](https://reactjs.org/) - For building the user interface.
@@ -97,8 +97,8 @@ DesiBite Food App is a full-stack web application designed for food delivery, al
 
 - **Friends and Family**: A heartfelt thank you to friends and family for their unwavering support and encouragement throughout the development process.
 
-Your contributions, inspiration, and support have been invaluable in bringing the Yumm Yumm Food App to life!
+Your contributions, inspiration, and support have been invaluable in bringing the DesiBite Food App to life!
 ## Contributing
 
-Contributions are welcome! We appreciate any suggestions, improvements, or feedback to enhance the Yumm Yumm Food App. To contribute:
+Contributions are welcome! We appreciate any suggestions, improvements, or feedback to enhance the DesiBite Food App. To contribute:
 
