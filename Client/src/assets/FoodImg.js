@@ -23,7 +23,7 @@ export const menu_list = [
   { menu_name: "Biryani", menu_img: food2 },
   { menu_name: "Noodles", menu_img: food3 },
   { menu_name: "Dosa", menu_img: food4 },
-  { menu_name: "Yamm Yamm", menu_img: food5 },
+  { menu_name: "Desi Bite Special", menu_img: food5 },
   { menu_name: "Burger", menu_img: food6 },
   { menu_name: "Rolls", menu_img: food7 },
 ];

@@ -34,11 +34,15 @@ const StoreContextProvider = (props) => {
     // Sync with backend if token is available
     if (token) {
       try {
-        await axios.post(`${url}/api/cart/addCart`, { itemId }, {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-        });
+        await axios.post(
+          `${url}/api/cart/addCart`,
+          { itemId },
+          {
+            headers: {
+              Authorization: `Bearer ${token}`,
+            },
+          }
+        );
         console.log("Item added to cart successfully");
       } catch (err) {
         console.error("Error adding item to cart:", err);
@@ -64,12 +68,25 @@ const StoreContextProvider = (props) => {
 
     // Sync with backend if token is available
     if (token) {
-      await axios.post(`${url}/api/cart/removeCart`, { itemId }, {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      });
+      await axios.post(
+        `${url}/api/cart/removeCart`,
+        { itemId },
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
     }
+  };
+
+  // Get total cart items
+  const getTotalCartItems = () => {
+    let totalItems = 0;
+    for (let item in cartItems) {
+      totalItems += cartItems[item];
+    }
+    return totalItems;
   };
 
   // Calculate total cart amount
@@ -99,11 +116,15 @@ const StoreContextProvider = (props) => {
   // Load cart data from the backend
   const loadCartData = async (token) => {
     try {
-      const response = await axios.post(`${url}/api/cart/getCart`, {}, {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      });
+      const response = await axios.post(
+        `${url}/api/cart/getCart`,
+        {},
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
 
       const backendCartData = response.data.cartData || {};
 
@@ -122,11 +143,15 @@ const StoreContextProvider = (props) => {
   const saveCartToBackend = async () => {
     if (token) {
       try {
-        await axios.post(`${url}/api/cart/saveCart`, { cartItems }, {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-        });
+        await axios.post(
+          `${url}/api/cart/saveCart`,
+          { cartItems },
+          {
+            headers: {
+              Authorization: `Bearer ${token}`,
+            },
+          }
+        );
         console.log("Cart saved to backend successfully");
       } catch (error) {
         console.error("Error saving cart to backend:", error);
@@ -139,16 +164,19 @@ const StoreContextProvider = (props) => {
     if (token) {
       try {
         // Clear cart from backend
-        await axios.post(`${url}/api/cart/clearCart`, {}, {
-          headers: {
-            Authorization: `Bearer ${token}`, // Send token to clear the cart
-          },
-        });
+        await axios.post(
+          `${url}/api/cart/clearCart`,
+          {},
+          {
+            headers: {
+              Authorization: `Bearer ${token}`, // Send token to clear the cart
+            },
+          }
+        );
         console.log("Cart cleared from backend successfully");
         toast.success("User logged out successfully");
       } catch (error) {
         console.error("Error clearing cart from backend:", error);
-
       }
     }
 
@@ -163,7 +191,6 @@ const StoreContextProvider = (props) => {
     // Redirect to login page
     navigate("/");
   };
-
 
   // Initialize data on page load
   useEffect(() => {
@@ -192,10 +219,11 @@ const StoreContextProvider = (props) => {
     removeFromCart,
     setCartItems,
     getTotalCartAmount,
+    getTotalCartItems,
     url,
     token,
     setToken,
-    logout,  // Export logout to be used in components
+    logout, // Export logout to be used in components
   };
 
   return (

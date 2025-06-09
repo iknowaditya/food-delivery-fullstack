@@ -2,10 +2,12 @@ import { useState, useEffect } from "react";
 import Hero from "../components/Hero";
 import ExploreMenu from "../components/ExploreMenu";
 import FoodDisplay from "../components/FoodDisplay";
-import AppDownload from "@/components/AppDownload";
+// import AppDownload from "@/components/AppDownload";
+import Tracking from "@/components/tracking";
+import Newsletter from "@/components/NewsLetter";
+// import Testing from "../components/test";
 
 const Home = () => {
-
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
@@ -13,11 +15,15 @@ const Home = () => {
 
   return (
     <>
-      <div className="xl:max-w-[1280px] w-full mx-auto">
+      <div className="xl:max-w-[ w-full mx-auto">
         <Hero />
+        {/* <div className="h-[100px]"></div> */}
         <ExploreMenu category={category} setCategory={setCategory} />
+        {/* <Testing /> */}
         <FoodDisplay category={category} />
-        <AppDownload />
+        <Tracking />
+        <Newsletter />
+        {/* <AppDownload /> */}
       </div>
     </>
   );

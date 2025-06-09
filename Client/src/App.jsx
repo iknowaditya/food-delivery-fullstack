@@ -8,7 +8,7 @@ import Footer from "./components/Footer";
 import { Routes, Route } from "react-router-dom";
 import "./App.css";
 import LoginPopUp from "./components/LoginPopUp";
-import { Toaster } from 'react-hot-toast';
+import { Toaster } from "react-hot-toast";
 import Verify from "./pages/Verify";
 import MyOrders from "./pages/MyOrders";
 
@@ -17,10 +17,7 @@ function App() {
   return (
     <>
       {showLogin ? <LoginPopUp setShowLogin={setShowLogin} /> : <></>}
-      <Toaster
-        position="bottom-right"
-        reverseOrder={true}
-      />
+      <Toaster position="bottom-right" reverseOrder={true} />
       <Navbar setShowLogin={setShowLogin} />
       <Routes>
         <Route path="/" element={<Home />} />

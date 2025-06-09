@@ -1,18 +1,39 @@
 /* Custom scrollbar for modern Windows 11-like look */
 .custom-scrollbar::-webkit-scrollbar {
-    width: 8px;
+  width: 8px;
 }
 
 .custom-scrollbar::-webkit-scrollbar-track {
-    background: #f1f1f1; /* light grey background */
+  background: #f1f1f1; /* light grey background */
 }
 
 .custom-scrollbar::-webkit-scrollbar-thumb {
-    background-color: #a8a8a8; /* dark grey thumb */
-    border-radius: 10px; /* rounded corners */
-    border: 2px solid #f1f1f1; /* gives padding around the thumb */
+  background-color: #a8a8a8; /* dark grey thumb */
+  border-radius: 10px; /* rounded corners */
+  border: 2px solid #f1f1f1; /* gives padding around the thumb */
 }
 
 .custom-scrollbar::-webkit-scrollbar-thumb:hover {
-    background-color: #888; /* hover effect for thumb */
+  background-color: #888; /* hover effect for thumb */
+}
+
+/* Fix for Leaflet markers */
+.leaflet-div-icon {
+  background: transparent;
+  border: none;
+}
+
+/* Animation for delivery bike */
+@keyframes bounce {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-8px);
+  }
+}
+
+.animate-bounce {
+  animation: bounce 1s infinite;
 }

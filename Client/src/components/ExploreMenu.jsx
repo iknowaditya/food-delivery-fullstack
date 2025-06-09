@@ -1,49 +1,107 @@
 import React from "react";
 import { menu_list } from "../assets/FoodImg";
+import { motion } from "framer-motion";
+import img1 from "../assets/FoodImg/food-14.jpg"; // Replace with your actual image path
+
+// Add a default "All" category at the start
+const allCategory = {
+  menu_name: "all",
+  menu_img: img1, // You can use any icon or image for "All"
+};
 
 const ExploreMenu = ({ category, setCategory }) => {
-  return (
-    <>
-      <div className="container mx-auto px-4 mt-24">
-        <h1 className="text-3xl font-bold leading-tight tracking-tight text-center text-gray-800  mb-4 delius">
-          Explore Our Menu
-        </h1>
-        <p className="text-gray-700 text-base leading-relaxed text-center mb-6">
-          Choose from a delivery Menu featuring the freshest ingredients
-        </p>
+  // Combine "All" with your menu_list
+  const categories = [allCategory, ...menu_list];
 
-        <div className="flex flex-wrap justify-center gap-3 md:gap-4">
-          {menu_list.map((item, index) => (
-            <div
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.1,
+        delayChildren: 0.3,
+      },
+    },
+  };
+
+  const itemVariants = {
+    hidden: { y: 20, opacity: 0 },
+    visible: {
+      y: 0,
+      opacity: 1,
+      transition: {
+        duration: 0.5,
+        ease: "easeOut",
+      },
+    },
+  };
+
+  return (
+    <section
+      className="py-20 bg-gradient-to-b from-white to-[#99f2c8]/30"
+      id="menu"
+    >
+      <div className="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        {/* Section header */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6 }}
+          className="text-center mb-16"
+        >
+          <span className="inline-block px-4 py-2 mb-4 text-sm font-semibold tracking-wider text-[#1f4037] uppercase rounded-full bg-[#99f2c8]/50">
+            Culinary Selection
+          </span>
+          <h2 className="text-4xl md:text-5xl font-bold text-[#1f4037] mb-4">
+            Explore Our <span className="text-[#99f2c8]">Menu</span>
+          </h2>
+          <p className="text-lg text-[#1f4037]/80 max-w-2xl mx-auto">
+            Discover our chef-curated selection featuring the freshest seasonal
+            ingredients
+          </p>
+        </motion.div>
+
+        {/* Category selector */}
+        <motion.div
+          variants={containerVariants}
+          initial="hidden"
+          animate="visible"
+          className="flex flex-wrap justify-center gap-4 md:gap-6"
+        >
+          {categories.map((item, index) => (
+            <motion.div
               key={index}
-              className={`relative cursor-pointer overflow-hidden rounded-full w-24 h-24 md:w-32 md:h-32 lg:w-40 lg:h-40 flex items-center justify-center transition-transform duration-300 transform hover:scale-105 ${category === item.menu_name
-                  ? "border-[6px] border-green-600"
-                  : ""
-                }`}
-              onClick={() =>
-                setCategory((prev) =>
-                  prev === item.menu_name ? "all" : item.menu_name
-                )
-              }
+              variants={itemVariants}
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+              className={`relative cursor-pointer group rounded-full overflow-hidden w-28 h-28 md:w-36 md:h-36 lg:w-44 lg:h-44 flex items-center justify-center transition-all duration-300 ${
+                category === item.menu_name
+                  ? "ring-4 ring-[#99f2c8] ring-offset-4"
+                  : "hover:ring-2 hover:ring-[#1f4037]/50"
+              }`}
+              onClick={() => setCategory(item.menu_name)}
             >
               <img
                 src={item.menu_img}
                 alt={item.menu_name}
-                className={`w-full h-full rounded-full object-cover object-center transition-transform duration-300 transform hover:scale-105`}
+                className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
               />
               <div
-                className={`absolute inset-0 flex items-center justify-center text-white text-lg font-bold bg-black bg-opacity-50 ${category === item.menu_name
+                className={`absolute inset-0 bg-gradient-to-t from-[#1f4037]/70 via-[#1f4037]/40 to-transparent flex items-end p-4 transition-opacity duration-300 ${
+                  category === item.menu_name
                     ? "opacity-100"
-                    : "opacity-0 hover:opacity-100"
-                  } transition-opacity duration-300`}
+                    : "opacity-0 group-hover:opacity-100"
+                }`}
               >
-                {item.menu_name}
+                <h3 className="text-white font-bold text-lg md:text-xl text-center w-full drop-shadow">
+                  {item.menu_name}
+                </h3>
               </div>
-            </div>
+            </motion.div>
           ))}
-        </div>
+        </motion.div>
       </div>
-    </>
+    </section>
   );
 };
 

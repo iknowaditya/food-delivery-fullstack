@@ -1,111 +1,131 @@
 import React, { useContext } from "react";
 import { StoreContext } from "../context/StoreContext";
 import { useNavigate } from "react-router-dom";
-import toast from "react-hot-toast"; // Import toast from react-hot-toast
-import star from "../assets/starIcon.svg";
-import add from "../assets/add.svg";
-import minus from "../assets/minus.svg";
-import plus from "../assets/plus.svg";
+import toast from "react-hot-toast";
+import { motion } from "framer-motion";
+import { Star, Plus, Minus, ShoppingCart } from "lucide-react";
 
 const FoodItem = React.memo(({ id, name, price, description, image }) => {
-  const { cartItems = {}, addToCart, removeFromCart, url, token } = useContext(StoreContext);
+  const {
+    cartItems = {},
+    addToCart,
+    removeFromCart,
+    url,
+    token,
+  } = useContext(StoreContext);
   const navigate = useNavigate();
 
-  // Function to handle the Order Now button click
   const handleOrderNow = () => {
     cartItems && cartItems[id]
       ? navigate("/cart")
-      : toast.error("Please select the quantity.");
+      : toast.error("Please select the quantity first");
   };
 
-  // Function to check if user is logged in (i.e., token exists)
   const handleAddToCart = (itemId) => {
     if (!token) {
-      toast.error("Please log in to add items to the cart!");
+      toast.error("Please login to add items to cart");
+    } else if (cartItems[itemId] && cartItems[itemId] >= 10) {
+      toast.error("Maximum 10 items allowed per dish");
     } else {
-      // Check if the cart item count is less than 10 before adding
-      if (cartItems[itemId] && cartItems[itemId] >= 10) {
-        toast.error("You cannot add more than 10 items.");
-      } else {
-        addToCart(itemId);
-      }
+      addToCart(itemId);
+      toast.success(`${name} added to cart`);
     }
   };
 
-
   const handleRemoveFromCart = (itemId) => {
     if (!token) {
-      toast.error("Please log in to modify cart items!");
+      toast.error("Please login to modify cart");
     } else {
       removeFromCart(itemId);
+      toast.success(`${name} removed from cart`);
     }
   };
 
   return (
-    <div className="max-w-sm bg-white rounded-lg shadow-lg overflow-hidden transform transition-transform duration-500 hover:scale-[1.02] hover:shadow-lg">
-      <img
-        src={url + "/images/" + image}
-        alt={name}
-        className="w-full h-48 bg-gray-600 object-cover rounded-b-lg object-center "
-      />
-      <div className="p-6">
-        <div className="flex justify-between items-center   h-16 p-1 ">
-          <h3 className="text-xl font-bold text-gray-800">{name}</h3>
-          <img
-            src={star}
-            alt="Rating"
-            className="w-10 h-10 object-cover object-center"
-          />
-          {/* Add/Minus/Plus Button */}
-          {(!cartItems || !cartItems[id]) ? (
-            <img
-              src={add}
-              alt="Add"
-              className="w-10 h-10 object-cover object-center cursor-pointer absolute top-36 right-4 bg-white rounded-full p-1 flex items-center justify-center transition-transform hover:scale-105 duration-300 shadow-lg hover:shadow-xl"
+    <motion.div className="bg-white/90 backdrop-blur-md rounded-3xl overflow-hidden shadow-xl border border-[#1f4037]/20 hover:shadow-2xl transition-all duration-300 group">
+      {/* Image with floating action buttons */}
+      <div className="relative h-56 sm:h-64 md:h-72 overflow-hidden rounded-t-3xl">
+        <img
+          src={url + "/images/" + image}
+          alt={name}
+          className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+        />
+
+        {/* Rating badge */}
+        <div className="absolute top-3 left-3 bg-white/90 backdrop-blur-lg px-2.5 py-1.5 rounded-full flex items-center shadow-md border border-[#99f2c8]/40">
+          <Star className="w-4 h-4 fill-[#99f2c8] text-[#99f2c8] mr-1" />
+          <span className="text-sm font-semibold text-[#1f4037]">4.8</span>
+        </div>
+
+        {/* Cart actions */}
+        <div className="absolute bottom-3 right-3">
+          {!cartItems || !cartItems[id] ? (
+            <motion.button
+              whileTap={{ scale: 0.92 }}
               onClick={() => handleAddToCart(id)}
-            />
+              className="p-2 bg-gradient-to-tr from-[#99f2c8] to-[#1f4037] text-white rounded-full shadow-lg hover:from-[#1f4037] hover:to-[#99f2c8] transition-all duration-200"
+              aria-label="Add to cart"
+            >
+              <Plus className="w-5 h-5" />
+            </motion.button>
           ) : (
-            <div className="absolute top-36 right-4 flex items-center justify-center bg-white rounded-full p-1 shadow-lg">
-              {/* Minus button */}
-              <img
+            <motion.div
+              initial={{ opacity: 0, scale: 0.8 }}
+              animate={{ opacity: 1, scale: 1 }}
+              className="flex items-center bg-white/90 backdrop-blur-lg border border-[#1f4037]/20 rounded-full shadow-lg px-2 py-1"
+            >
+              <motion.button
+                whileTap={{ scale: 0.85 }}
                 onClick={() => handleRemoveFromCart(id)}
-                src={minus}
-                alt="Minus"
-                className="cursor-pointer mr-2 w-8 h-8 hover:bg-gray-200 p-1 rounded-full transition-colors duration-300"
-              />
-              {/* Item count */}
-              <p className="text-gray-700 text-lg font-semibold">
+                className="p-1 text-[#1f4037] hover:bg-[#99f2c8]/20 rounded-full transition-colors"
+                aria-label="Remove from cart"
+              >
+                <Minus className="w-4 h-4" />
+              </motion.button>
+              <span className="mx-2 font-semibold text-[#1f4037] min-w-[20px] text-center">
                 {cartItems[id]}
-              </p>
-              {/* Plus button */}
-              <img
+              </span>
+              <motion.button
+                whileTap={{ scale: 0.85 }}
                 onClick={() => handleAddToCart(id)}
-                src={plus}
-                alt="Plus"
-                className="cursor-pointer ml-2 w-8 h-8 hover:bg-gray-200 p-1 rounded-full transition-colors duration-300"
-              />
-            </div>
+                className="p-1 text-[#1f4037] hover:bg-[#99f2c8]/20 rounded-full transition-colors"
+                aria-label="Add more"
+              >
+                <Plus className="w-4 h-4" />
+              </motion.button>
+            </motion.div>
           )}
         </div>
-        <hr />
+      </div>
 
-        <p className="text-gray-700 text-sm mb-[10px] mt-2 line-clamp-2 leading-relaxed overflow-hidden h-12 p-1 ">
+      {/* Content */}
+      <div className="p-5 sm:p-6">
+        <div className="flex justify-between items-start mb-2">
+          <h3 className="text-lg sm:text-xl font-bold text-[#1f4037] truncate max-w-[70%]">
+            {name}
+          </h3>
+          <span className="text-[#99f2c8] font-extrabold text-base sm:text-lg">
+            ${price.toFixed(2)}
+          </span>
+        </div>
+
+        <p className="text-[#1f4037]/80 text-sm sm:text-base mb-4 line-clamp-2 leading-relaxed">
           {description}
         </p>
 
-        <div className="flex flex-col sm:flex-row justify-between items-center space-y-4 sm:space-y-0">
-          <span className="text-xl sm:text-2xl md:text-3xl leading-relaxed font-bold text-green-600">
+        <div className="flex justify-between items-center">
+          <span className="text-3xl leading-relaxed font-bold text-green-600">
             ${price}
           </span>
           <button
-            className="w-full sm:w-auto bg-green-600 text-white px-3 xl:px-6 py-3 text-sm sm:text-base rounded-md hover:bg-green-700 transition-colors duration-300 shadow-md hover:shadow-lg"
-            onClick={handleOrderNow}
+            className="bg-green-600 text-white px-4 py-2 rounded-md hover:bg-green-700 transition-colors duration-300 shadow-md hover:shadow-lg"
+            onClick={handleOrderNow} // Use handleOrderNow for click event
           >
             Order Now
           </button>
         </div>
       </div>
-    </div>
+    </motion.div>
   );
 });
 
