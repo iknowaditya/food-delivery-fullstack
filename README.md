@@ -1,6 +1,6 @@
-# DesiBite Food App
+# DesiBite Food Delivery App
 
-DesiBite Food App is a full-stack web application designed for food delivery, allowing users to explore a variety of dishes, add them to their cart, and proceed to checkout using Stripe for secure payments. It includes an admin panel for managing food availability, user orders, and tracking information, with all data stored in MongoDB.
+DesiBite is a full-stack web application designed for food delivery, allowing users to explore a variety of dishes, add them to their cart, and proceed to checkout using Stripe for secure payments. It includes an admin panel for managing food availability, user orders, and tracking information, with all data stored in MongoDB.
 
 ## Tech Stack
 
